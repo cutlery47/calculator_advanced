@@ -4,16 +4,18 @@
 #include <string.h>
 #include <math.h>
 
+//константы
 static int num = 1;
 const int max = 2147483647;
 const int min = -2147483648;
 
+//интерфейс для ввода числа
 void interface_input() {
     printf("\n");
     printf("================\n");
     printf("Enter the number\n");
 }
-
+//длина целого числа
 int int_len(int input) {
     int len = 0;
     if (input == 0) {
@@ -25,7 +27,7 @@ int int_len(int input) {
     }
     return len;
 }
-
+//определение номера операции в зависимости от ввода
 int num_menu_func() { 
     int input = getch();
     while (input != '1' && input != '2' && input != '3' && input != '4' && input != '5' && input != '6' && input != '7' && input != '8' && input != '9' && input != '0' && input != 27 && input != 8 && input != 13 && input != 80 && input != 72) {
@@ -86,7 +88,7 @@ int num_menu_func() {
         return num;
     } 
 }
-
+//посимвольный ввод
 int var_func() {
     int input = 228;
     while (input != '1' && input != '2' && input != '3' && input != '4' && input != '5' && input != '6' && input != '7' && input != '8' && input != '9' && input != '0' && input != 27 && input != 8 && input != 13) {
@@ -123,7 +125,7 @@ int var_func() {
         return 12;
     }
 }
-
+//интерфейс подтверждения
 void confirm() {
     int key = 0;
     printf("==================================\n");
@@ -133,14 +135,14 @@ void confirm() {
     }
     system("cls");
 }
-
+//экран ошибки
 void error_screen() {
     system("cls");
     printf("==============================\n");
     printf("Error: Retry with other values\n");
     confirm();
 }
-
+//функция ввода
 int input_func() {
     system("cls");
     int key = 0, exit = 0;
@@ -251,7 +253,7 @@ int input_func() {
     }
 return full_var; 
 }    
-
+//справка
 void help_menu() {
         system("cls");
         printf("Welcome to trash-calculator v.2!!!\n");
@@ -264,7 +266,7 @@ void help_menu() {
         printf("5 - Check the answer\n");
         confirm();
         }
-
+//определение знака
 int sign_func() {
     int sign = 0, input;
     printf("==================================\n");
@@ -282,13 +284,13 @@ int sign_func() {
     }
     }
 }
-
+//статическая часть интерфейса
 void interface_static(int var_1, int var_2) {
     printf("=========================================================\n");
     printf("A = %d  B = %d", var_1, var_2);
     printf("\n=========================================================\n");
 }
-
+//часть интерфейса со стрелками
 int interface_main_pointers(int num) {
     if (num == 1) {
         printf("1) Enter the first number <--\n");
@@ -342,13 +344,13 @@ int interface_main_pointers(int num) {
         printf("=========================================================\n");
     }
 }
-
+//вывод полного интерфейса
 int full_interface(int num, int var_1, int var_2){
     system("cls");
     interface_static(var_1, var_2);
     interface_main_pointers(num);
 }
-
+//функуия полного ввода числа
 int get_input(int input) {
     input = input_func();
     if (input == 0) {
@@ -360,7 +362,7 @@ int get_input(int input) {
     }
     return input;
 }
-
+//проверка для умножения
 int mult_check(int var_1, int var_2) {
     // A < max / B
     if (abs(var_1) < (max / abs(var_2))) {
@@ -369,7 +371,7 @@ int mult_check(int var_1, int var_2) {
         return 0;
     }
 }
-
+//проверка для возведения в степень
 int exp_check(int var_1, int var_2) { 
     double var_1dbl = (double)var_1;
     double var_2dbl = (double)var_2;
@@ -385,7 +387,7 @@ int exp_check(int var_1, int var_2) {
         return 0;
     }
 }
-
+//выбор операции
 void get_operation(int key, int input_1, int input_2) {
     //СЛОЖЕНИЕ
     if (key == 3) {
@@ -506,11 +508,14 @@ int main() {
 
 
     while (exit == 0) {
+    //вывод интерфейса
     full_interface(num, var_1, var_2);
     key = num_menu_func();
+    //если escape
     if (key == 10) {
         break;
     }
+    //если enter
     if (key == 12) {
         if (num == 1) {
         var_1 = get_input(var_1);
